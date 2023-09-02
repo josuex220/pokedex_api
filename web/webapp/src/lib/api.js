@@ -18,7 +18,20 @@ class Api {
           throw error;
         }
       }
+    async fetchByNameOrId(idOrName){
+      try {
+        const response = await fetch(`${this.baseURL}pokemon/${idOrName}`);
   
+        if (!response.ok) {
+          throw new Error('Erro ao buscar Pokémon da API');
+        }
+  
+        const data = await response.json();
+        return data;
+      } catch (error) {
+        throw error;
+      }
+    }
     async fetchData() {
       try {
         const response = await fetch(`${this.baseURL}data`);

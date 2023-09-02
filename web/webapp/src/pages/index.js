@@ -11,14 +11,6 @@ const Home = () => {
     const [search, setSearch] = useState('');
 
     const { pokemonList, currentPage } = useContext(PokemonsContext);
-    const pokemons = [
-        {
-            name: 'Bulbasaur',
-            id: 1,
-            image: 'https://images.gameinfo.io/pokemon/256/p1f87.png',
-            types: ['terra', 'sol', 'raio']
-        }
-    ]
   return (
     <div>
         <CustomHead />

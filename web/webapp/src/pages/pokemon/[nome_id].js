@@ -1,29 +1,51 @@
-import React, {useState} from 'react';
+import { useRouter } from 'next/router';
+import React, {useEffect, useState} from 'react';
 import Footer from '@/components/Footer';
 import CustomHead from '@/components/CustomHead';
 import '@/public/styles/globals.css';
 import Search from '@/components/Search';
 import CardItem from '@/components/CardItem';
+import api from '@/lib/api';
+import { useParams } from 'react-router-dom';
 
 
-const Home = () => {
+const DetailsPokemon = ({}) => {
     const [search, setSearch] = useState('');
-    const pokemons = [
-        {
-            name: 'Bulbasaur',
-            id: 1,
-            image: 'https://images.gameinfo.io/pokemon/256/p1f87.png',
-            types: ['terra', 'sol', 'raio']
-        }
-    ]
+    const [infoDetail, setInfoDetails]= useState([]);
+      const router = useRouter();
+      const { nome_id } = router.query;
+
+
+      useEffect(() => {
+        const fetchPokemonDetails = async () => {
+          if (nome_id) {
+            try {
+              const details = await api.fetchByNameOrId(nome_id);
+              const type = details.types.map((itemType) => itemType.type.name);
+
+              setInfoDetails([{
+                name: details.name,
+                id: details.id,
+                image: details.sprites.front_default,
+                types: type
+              }]); 
+            } catch (error) {
+              console.error('Erro ao buscar detalhes do Pokémon:', error);
+            }
+          }
+        };
+    
+        fetchPokemonDetails();
+      }, [nome_id]);
+    
   return (
     <div>
       <CustomHead />
       <main>
-        <Search search={search} setSearch={setSearch} />
+        <h2 className='h2Details'>Detalhes do Pokemon</h2>
         <div className='listPokemons'>
             {
-                pokemons.map((item) => (
+                infoDetail.map((item) => (
                     <CardItem image={item.image} url={'/pokemon/'} id={item.id} types={item.types} info={item} />
                 ))
             }
@@ -35,4 +57,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default DetailsPokemon;
