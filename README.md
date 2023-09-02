@@ -10,6 +10,7 @@ yarn dev
 # ou
 pnpm dev
 ```
+Abra [http://localhost:3333](http://localhost:3333) em seu navegador.
 
 Para ligar o ReactJS:
 
