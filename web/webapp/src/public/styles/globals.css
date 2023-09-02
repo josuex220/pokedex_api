@@ -1,0 +1,36 @@
+html, *{
+    margin:0;
+    padding:0;
+}
+body{
+    margin:0;
+    padding:0;
+    max-width: 1200px;
+    background-color: #e5e5e5;
+    justify-content: center;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    font: 400 16px/1.5 Roboto,sans-serif;
+    color: #303030;
+    width: 90%;
+}
+main{
+    min-height: 92vh;
+    margin-top: 20px;
+}
+.listPokemons{
+    width: 100%;
+    margin-top: 30px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+p{
+    text-align: center;
+}
+a{
+    color:#4078c0;
+    text-decoration: none;
+    font-weight: 300;
+}
