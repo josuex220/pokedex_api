@@ -1,7 +1,6 @@
 import React, {useContext, useState} from 'react';
 import Footer from '../components/Footer';
 import CustomHead from '../components/CustomHead';
-import '../public/styles/globals.css';
 import Search from '@/components/Search';
 import CardItem from '@/components/CardItem';
 import { PokemonsContext } from '@/contexts/PokemonsContext';
