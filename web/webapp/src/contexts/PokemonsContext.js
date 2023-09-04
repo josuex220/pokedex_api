@@ -5,7 +5,10 @@ export const PokemonsContext = createContext();
 export function PokemonsProvider({ children }) {
     const [pokemonList, setPokemonsToList] = useState([]);
     const [currentPage, setCurrentPage] = useState(1); 
+    const [searchTerm, setSearchTerm] = useState("");
 
+    
+    
     useEffect(() => {
         async function fetchData() {
             try {
@@ -31,10 +34,18 @@ export function PokemonsProvider({ children }) {
         fetchData();
     }, []);
 
+    const searchPokemon = (term) => {
+      const filteredPokemons = pokemonList.filter((pokemon) =>
+        pokemon.name.toLowerCase().includes(term.toLowerCase())
+      );
+      return filteredPokemons;
+    };
+
     return (
         <PokemonsContext.Provider value={{
             pokemonList,
             currentPage,
+            searchPokemon
         }}>
             {children}
         </PokemonsContext.Provider>

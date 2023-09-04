@@ -1,7 +1,7 @@
 import styles from '../public/styles/Search.module.css'
-const Search = ({setSearch, search}) => {
+const Search = ({handleSearch}) => {
     const onKeySearch = ( event ) => {
-        setSearch(event.target.value);
+        handleSearch(event.target.value);
     }
 
     return (

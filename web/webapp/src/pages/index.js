@@ -7,17 +7,21 @@ import { PokemonsContext } from '@/contexts/PokemonsContext';
 
 
 const Home = () => {
-    const [search, setSearch] = useState('');
+    const [searchResults, setSearchResults] = useState([]);
+    const { pokemonList, currentPage, searchPokemon } = useContext(PokemonsContext);
 
-    const { pokemonList, currentPage } = useContext(PokemonsContext);
+    const handleSearch = (searchTerm) => {
+        const results = searchPokemon(searchTerm);
+        setSearchResults(results);
+      };
   return (
     <div>
         <CustomHead />
         <main>
-            <Search search={search} setSearch={setSearch} />
+            <Search handleSearch={handleSearch} />
             <div className='listPokemons'>
                 {
-                    pokemonList.length > 0 ? pokemonList.map((item) => (
+                    (searchResults.length > 0 ? searchResults : pokemonList).length > 0 ? (searchResults.length > 0 ? searchResults : pokemonList).map((item) => (
                         <CardItem key={item.id} image={item.image} url={item.url} id={item.id} types={item.types} info={item} />
                     )) : (<div>Não trouxe nenhum pokemon</div>)
                 }
