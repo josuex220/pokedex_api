@@ -45,7 +45,7 @@ const DetailsPokemon = ({}) => {
         <div className='listPokemons'>
             {
                 infoDetail.map((item) => (
-                    <CardItem image={item.image} url={'/pokemon/'} id={item.id} types={item.types} info={item} />
+                    <CardItem image={item.image} url={'/pokemon/'+item.name} id={item.id} types={item.types} info={item} />
                 ))
             }
         </div>
